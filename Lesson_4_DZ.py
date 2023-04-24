@@ -42,3 +42,40 @@ def Task3():
     n = int(input('Введите точность: '))
     print(round(math.pi, n))
 
+
+# Задача 4*. Даны два файла, в каждом из которых находится
+# запись многочлена. Найдите сумму данных многочленов.
+# 1. 5x^2 + 3x
+# 2. 2. 3x^2 + x + 8
+# 3. Результат: 8x^2 + 4x + 8
+def polinomi():
+    data = open('file1.txt', encoding='utf-8')
+    text = data.readlines()
+    data.close()
+
+    data = open('file2.txt', encoding='utf-8')
+    text += data.readlines()
+    data.close()
+
+    poly_f = text[0]
+    poly_s = text[1]    
+
+    poly_s = poly_s.replace(' ', '')
+    poly_s = poly_s.replace('-', '+-')
+    if poly_s[0] == '+':
+        poly_s = poly_s[1:]
+    poly_s = poly_s.split('+')
+
+    for i in range(len(poly_s)):
+        if not 'x^' in poly_s[i]:
+            if 'x' in poly_s[i]: poly_s[i] = poly_s[i].replace('x', 'x^1')
+            else: poly_s[i] = poly_s[i] + 'x^0'
+    
+    poly_s = dict(i.split('x^') for i in poly_s)
+    
+
+    
+
+
+    print(poly_f)
+    print(poly_s)
